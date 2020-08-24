@@ -24,6 +24,7 @@ For more information on the ActiveCampaign API, refer to their [developer docume
 This package can be installed through Composer:
 
 ```sh
+$ composer config repositories.minstersoft '{"type": "vcs", "url": "https://github.com/Minstersoft/activecampaign"}'
 $ composer require minstersoft/activecampaign
 ```
 
