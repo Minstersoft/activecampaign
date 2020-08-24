@@ -24,7 +24,7 @@ For more information on the ActiveCampaign API, refer to their [developer docume
 This package can be installed through Composer:
 
 ```sh
-$ composer require testmonitor/activecampaign
+$ composer require minstersoft/activecampaign
 ```
 
 Make sure to use Composer's autoload:
