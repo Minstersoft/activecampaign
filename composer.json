@@ -1,6 +1,7 @@
 {
     "name": "minstersoft/activecampaign",
-    "description": "ActiveCampaign API connector for APIv3",
+    "description": "ActiveCampaign API connector for APIv3 For PHP 7.0",
+    "version": "1.0.0",
     "keywords": ["activecampaign", "active", "campaign", "api"],
     "authors": [
         {
@@ -20,6 +21,11 @@
             "email": "fkeulen@testmonitor.com",
             "homepage": "https://www.testmonitor.com/",
             "role": "Developer"
+        },
+        {
+            "name": "Nitinai Supreeyaporn",
+            "email": "nitinai.supreeyaporn@minstersoft.co.uk",
+            "role": "Developer"
         }
     ],
     "license": "MIT",
@@ -27,20 +33,20 @@
     "require": {
         "php": "7.0.*",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.5"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.23.0",
         "friendsofphp/php-cs-fixer": "^2.11",
         "mockery/mockery": "~1.0",
         "phploc/phploc": "^4.0",
         "phpmd/phpmd": "^2.6",
-        "phpunit/phpunit": "~7.0",
-        "squizlabs/php_codesniffer": "^3.0"
+        "squizlabs/php_codesniffer": "^3.0",
+        "phpunit/phpunit": "^6.5",
+        "codedungeon/phpunit-result-printer": "^0.9.3"
     },
     "autoload": {
         "psr-4": {
-            "TestMonitor\\ActiveCampaign\\": "src/"
+            "Minstersoft\\ActiveCampaign\\": "src/"
         }
     }
 }

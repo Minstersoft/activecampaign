@@ -1,6 +1,6 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Actions;
+namespace Minstersoft\ActiveCampaign\Actions;
 
 /**
  * Class Action.

@@ -1,9 +1,9 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Actions;
+namespace Minstersoft\ActiveCampaign\Actions;
 
-use TestMonitor\ActiveCampaign\Resources\Automation;
-use TestMonitor\ActiveCampaign\Resources\Contact;
+use Minstersoft\ActiveCampaign\Resources\Automation;
+use Minstersoft\ActiveCampaign\Resources\Contact;
 
 trait ManagesContactAutomations
 {
@@ -12,8 +12,8 @@ trait ManagesContactAutomations
     /**
      * Get all organizations.
      *
-     * @param \TestMonitor\ActiveCampaign\Resources\Contact $contact
-     * @param \TestMonitor\ActiveCampaign\Resources\Automation $automation
+     * @param \Minstersoft\ActiveCampaign\Resources\Contact $contact
+     * @param \Minstersoft\ActiveCampaign\Resources\Automation $automation
      *
      * @return array
      */

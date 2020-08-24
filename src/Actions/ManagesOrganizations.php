@@ -1,8 +1,8 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Actions;
+namespace Minstersoft\ActiveCampaign\Actions;
 
-use TestMonitor\ActiveCampaign\Resources\Organization;
+use Minstersoft\ActiveCampaign\Resources\Organization;
 
 trait ManagesOrganizations
 {
