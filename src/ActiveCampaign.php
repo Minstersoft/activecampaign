@@ -1,17 +1,17 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign;
+namespace Minstersoft\ActiveCampaign;
 
 use GuzzleHttp\Client as HttpClient;
-use TestMonitor\ActiveCampaign\Actions\ManagesAutomations;
-use TestMonitor\ActiveCampaign\Actions\ManagesContactAutomations;
-use TestMonitor\ActiveCampaign\Actions\ManagesContacts;
-use TestMonitor\ActiveCampaign\Actions\ManagesContactTags;
-use TestMonitor\ActiveCampaign\Actions\ManagesCustomFields;
-use TestMonitor\ActiveCampaign\Actions\ManagesEvents;
-use TestMonitor\ActiveCampaign\Actions\ManagesLists;
-use TestMonitor\ActiveCampaign\Actions\ManagesOrganizations;
-use TestMonitor\ActiveCampaign\Actions\ManagesTags;
+use Minstersoft\ActiveCampaign\Actions\ManagesAutomations;
+use Minstersoft\ActiveCampaign\Actions\ManagesContactAutomations;
+use Minstersoft\ActiveCampaign\Actions\ManagesContacts;
+use Minstersoft\ActiveCampaign\Actions\ManagesContactTags;
+use Minstersoft\ActiveCampaign\Actions\ManagesCustomFields;
+use Minstersoft\ActiveCampaign\Actions\ManagesEvents;
+use Minstersoft\ActiveCampaign\Actions\ManagesLists;
+use Minstersoft\ActiveCampaign\Actions\ManagesOrganizations;
+use Minstersoft\ActiveCampaign\Actions\ManagesTags;
 
 class ActiveCampaign
 {

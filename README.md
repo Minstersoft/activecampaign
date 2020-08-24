@@ -1,15 +1,11 @@
 # ActiveCampaign PHP SDK
 
-[![Latest Stable Version](https://poser.pugx.org/testmonitor/activecampaign/v/stable)](https://packagist.org/packages/testmonitor/activecampaign)
-[![CircleCI](https://img.shields.io/circleci/project/github/testmonitor/activecampaign.svg)](https://circleci.com/gh/testmonitor/activecampaign)
-[![Travis Build](https://travis-ci.org/testmonitor/activecampaign.svg?branch=master)](https://travis-ci.org/testmonitor/activecampaign)
-[![Code Quality](https://scrutinizer-ci.com/g/testmonitor/activecampaign/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/testmonitor/activecampaign/?branch=master)
-[![StyleCI](https://styleci.io/repos/176945288/shield)](https://styleci.io/repos/176945288)
+
 [![License](https://poser.pugx.org/testmonitor/activecampaign/license)](https://packagist.org/packages/testmonitor/activecampaign)
 
 This package provides a PHP SDK for the ActiveCampaign API (v3).
 
-It is inspired by the code style of [Laravel's Forge SDK](https://github.com/themsaid/forge-sdk).
+It is forked from [testmonitor/activecampaign](https://github.com/testmonitor/activecampaign)
 
 For more information on the ActiveCampaign API, refer to their [developer documentation](https://developers.activecampaign.com/reference).
 
@@ -36,6 +32,16 @@ Make sure to use Composer's autoload:
 ```php
 require __DIR__.'/../vendor/autoload.php';
 ```
+
+Add 'use' before class name
+
+```php
+use Minstersoft\ActiveCampaign\ActiveCampaign;
+
+class ClassName { 
+ //...
+}
+``` 
 
 Start by creating a new instance:
 
@@ -90,12 +96,6 @@ $ vendor/bin/phpunit
 ## Changelog
 
 Refer to [CHANGELOG](CHANGELOG.md) for more information.
-
-## Contributing
-
-Refer to [CONTRIBUTING](CONTRIBUTING.md) for contributing details.
-
-## Credits
 
 - [Thijs Kok](https://www.testmonitor.com/)
 - [Stephan Grootveld](https://www.testmonitor.com/)

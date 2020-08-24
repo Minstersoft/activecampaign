@@ -1,9 +1,9 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Actions;
+namespace Minstersoft\ActiveCampaign\Actions;
 
-use TestMonitor\ActiveCampaign\Resources\Contact;
-use TestMonitor\ActiveCampaign\Resources\ContactsList;
+use Minstersoft\ActiveCampaign\Resources\Contact;
+use Minstersoft\ActiveCampaign\Resources\ContactsList;
 
 trait ManagesLists
 {
@@ -38,7 +38,7 @@ trait ManagesLists
             if (isset($lists['list']) && count($lists['list'])) {
                 return new ContactsList($lists['list']);
             }
-        } catch (\TestMonitor\ActiveCampaign\Exceptions\NotFoundException $e) {
+        } catch (\Minstersoft\ActiveCampaign\Exceptions\NotFoundException $e) {
             // return null if list not foun
         }
     }
@@ -92,7 +92,7 @@ trait ManagesLists
      *
      * @param int $id ID of the list to delete
      *
-     * @throws \TestMonitor\ActiveCampaign\Exceptions\NotFoundException
+     * @throws \Minstersoft\ActiveCampaign\Exceptions\NotFoundException
      */
     public function deleteList($id)
     {

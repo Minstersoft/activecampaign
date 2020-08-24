@@ -1,8 +1,8 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Actions;
+namespace Minstersoft\ActiveCampaign\Actions;
 
-use TestMonitor\ActiveCampaign\Resources\Tag;
+use Minstersoft\ActiveCampaign\Resources\Tag;
 
 trait ManagesTags
 {

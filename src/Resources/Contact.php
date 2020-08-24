@@ -1,6 +1,6 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Resources;
+namespace Minstersoft\ActiveCampaign\Resources;
 
 class Contact extends Resource
 {
