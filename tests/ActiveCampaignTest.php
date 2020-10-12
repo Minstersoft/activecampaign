@@ -71,11 +71,12 @@ class ActiveCampaignTest extends TestCase
         $response->shouldReceive('getStatusCode')->andReturn(400);
         $response->shouldReceive('getBody')->once()->andReturn('Error!');
 
+        $errorMessage = '';
         try {
             $activeCampaign->organizations();
         } catch (\Minstersoft\ActiveCampaign\Exceptions\FailedActionException $e) {
+            $errorMessage = $e->getMessage();
         }
-
-        $this->assertEquals('Error!', $e->getMessage());
+        $this->assertEquals('Error!', $errorMessage);
     }
 }

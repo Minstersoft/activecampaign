@@ -18,4 +18,6 @@ trait ImplementsActions
     abstract protected function delete($uri, array $payload = []);
 
     abstract protected function transformCollection($collection, $class, $key = '', $extraData = []);
+
+    abstract protected function transformItem($data, $class, $key = '', $extraData = []);
 }
