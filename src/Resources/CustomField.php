@@ -23,6 +23,11 @@ class CustomField extends Resource
     public $title;
 
     /**
+     * @var string
+     */
+    public $type;
+
+    /**
      * @var array of field option ids
      */
     public $options = [];
