@@ -24,11 +24,22 @@ For more information on the ActiveCampaign API, refer to their [developer docume
 This package can be installed through Composer:
 
 ```sh
-$ composer config repositories.minstersoft/activecampaign '{"type": "vcs", "url": "https://github.com/Minstersoft/activecampaign"}'
 $ composer require minstersoft/activecampaign
 ```
 
-To install this locally:
+To install and dev locally:
+
+   1\. Add version in composer.json.
+    
+```json
+{
+"..": "...",
+"version": "1.0.0",
+"...": "..."
+}
+```
+   2\. Replace the url with your local path and run the command.
+
 ```sh
 $ composer config repositories.minstersoft/activecampaign '{"type": "path", "url": "/home/vagrant/activecampaign"}'
 $ composer require minstersoft/activecampaign
@@ -107,7 +118,8 @@ Refer to [CHANGELOG](CHANGELOG.md) for more information.
 - [Thijs Kok](https://www.testmonitor.com/)
 - [Stephan Grootveld](https://www.testmonitor.com/)
 - [Frank Keulen](https://www.testmonitor.com/)
-- [All Contributors](../../contributors)
+- [Contributors from original package](https://github.com/testmonitor/activecampaign/contributors)
+- [Contributors from Minstersoft](../../contributors)
 
 ## License
 
