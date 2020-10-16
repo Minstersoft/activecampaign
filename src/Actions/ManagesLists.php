@@ -3,6 +3,7 @@
 namespace Minstersoft\ActiveCampaign\Actions;
 
 use Minstersoft\ActiveCampaign\Resources\Contact;
+use Minstersoft\ActiveCampaign\Resources\ContactList;
 use Minstersoft\ActiveCampaign\Resources\ContactsList;
 
 trait ManagesLists
@@ -33,7 +34,7 @@ trait ManagesLists
     public function getList($id)
     {
         try {
-            $lists = $this->get('lists/'.$id);
+            $lists = $this->get('lists/' . $id);
 
             if (isset($lists['list']) && count($lists['list'])) {
                 return new ContactsList($lists['list']);
@@ -66,14 +67,14 @@ trait ManagesLists
      *
      * @param string $name Name of the list to create
      * @param string $senderUrl The website URL this list is for.
-     * @param array  $params other options to create list
+     * @param array $params other options to create list
      *
      * @return ContactsList
      */
     public function createList($name, $senderUrl, $params = [])
     {
         $params['name'] = $name;
-        if (! isset($params['stringid'])) {
+        if (!isset($params['stringid'])) {
             $params['stringid'] = strtolower(preg_replace('/[^A-Z0-9]+/i', '-', $name));
         }
         $params['sender_url'] = $senderUrl;
@@ -92,11 +93,10 @@ trait ManagesLists
      *
      * @param int $id ID of the list to delete
      *
-     * @throws \Minstersoft\ActiveCampaign\Exceptions\NotFoundException
      */
     public function deleteList($id)
     {
-        $this->delete('lists/'.$id);
+        $this->delete('lists/' . $id);
     }
 
     /**
@@ -108,12 +108,15 @@ trait ManagesLists
      */
     public function updateListStatus($list, $contact, $subscribe)
     {
-        $this->post('contactLists', ['json' => [
-            'contactList' => [
-                'list' => $list,
-                'contact' => $contact,
-                'status' => $subscribe ? 1 : 2,
-            ], ]]);
+        $this->post('contactLists', [
+            'json' => [
+                'contactList' => [
+                    'list'    => $list,
+                    'contact' => $contact,
+                    'status'  => $subscribe ? ContactList::STATUS_SUBSCRIBE : ContactList::STATUS_UNSUBSCRIBE,
+                ],
+            ],
+        ]);
     }
 
     /**

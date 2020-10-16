@@ -5,7 +5,7 @@
 
 This package provides a PHP SDK for the ActiveCampaign API (v3).
 
-It is forked from [testmonitor/activecampaign](https://github.com/testmonitor/activecampaign)
+Forked from [testmonitor/activecampaign](https://github.com/testmonitor/activecampaign)
 
 For more information on the ActiveCampaign API, refer to their [developer documentation](https://developers.activecampaign.com/reference).
 
@@ -24,7 +24,13 @@ For more information on the ActiveCampaign API, refer to their [developer docume
 This package can be installed through Composer:
 
 ```sh
-$ composer config repositories.minstersoft '{"type": "vcs", "url": "https://github.com/Minstersoft/activecampaign"}'
+$ composer config repositories.minstersoft/activecampaign '{"type": "vcs", "url": "https://github.com/Minstersoft/activecampaign"}'
+$ composer require minstersoft/activecampaign
+```
+
+To install this locally:
+```sh
+$ composer config repositories.minstersoft/activecampaign '{"type": "path", "url": "/home/vagrant/activecampaign"}'
 $ composer require minstersoft/activecampaign
 ```
 

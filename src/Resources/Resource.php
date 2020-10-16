@@ -2,7 +2,7 @@
 
 namespace Minstersoft\ActiveCampaign\Resources;
 
-class Resource
+class   Resource
 {
     /**
      * The resource attributes.
