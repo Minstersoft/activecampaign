@@ -1,8 +1,8 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Resources;
+namespace Minstersoft\ActiveCampaign\Resources;
 
-class Resource
+class   Resource
 {
     /**
      * The resource attributes.
@@ -14,7 +14,7 @@ class Resource
     /**
      * The ActiveCampaign SDK instance.
      *
-     * @var \TestMonitor\ActiveCampaign\ActiveCampaign
+     * @var \Minstersoft\ActiveCampaign\ActiveCampaign
      */
     protected $activeCampaign;
 
@@ -22,7 +22,7 @@ class Resource
      * Create a new resource instance.
      *
      * @param  array $attributes
-     * @param  \TestMonitor\ActiveCampaign\ActiveCampaign $activeCampaign
+     * @param  \Minstersoft\ActiveCampaign\ActiveCampaign $activeCampaign
      * @return void
      */
     public function __construct(array $attributes, $activeCampaign = null)

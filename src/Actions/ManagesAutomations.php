@@ -1,8 +1,8 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Actions;
+namespace Minstersoft\ActiveCampaign\Actions;
 
-use TestMonitor\ActiveCampaign\Resources\Automation;
+use Minstersoft\ActiveCampaign\Resources\Automation;
 
 trait ManagesAutomations
 {

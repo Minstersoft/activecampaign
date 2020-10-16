@@ -1,9 +1,15 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Resources;
+namespace Minstersoft\ActiveCampaign\Resources;
 
 class Contact extends Resource
 {
+    /**
+     * object keys
+     */
+    const ITEM_KEY = 'contact';
+    const COLLECTION_KEY = 'contacts';
+
     /**
      * The id of the contact.
      *

@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use TestMonitor\ActiveCampaign\ActiveCampaign;
+use Minstersoft\ActiveCampaign\ActiveCampaign;
 
 class ActiveCampaignTest extends TestCase
 {
@@ -23,7 +23,7 @@ class ActiveCampaignTest extends TestCase
 
         $organizations = $activeCampaign->organizations();
 
-        $this->assertContainsOnlyInstancesOf(\TestMonitor\ActiveCampaign\Resources\Organization::class, $organizations);
+        $this->assertContainsOnlyInstancesOf(\Minstersoft\ActiveCampaign\Resources\Organization::class, $organizations);
     }
 
     public function test_handling_validation_errors()
@@ -39,7 +39,7 @@ class ActiveCampaignTest extends TestCase
 
         try {
             $activeCampaign->organizations();
-        } catch (\TestMonitor\ActiveCampaign\Exceptions\ValidationException $e) {
+        } catch (\Minstersoft\ActiveCampaign\Exceptions\ValidationException $e) {
         }
 
         $this->assertEquals(['name' => ['The name is required.']], $e->errors());
@@ -47,7 +47,7 @@ class ActiveCampaignTest extends TestCase
 
     public function test_handling_404_errors()
     {
-        $this->expectException(\TestMonitor\ActiveCampaign\Exceptions\NotFoundException::class);
+        $this->expectException(\Minstersoft\ActiveCampaign\Exceptions\NotFoundException::class);
 
         $activeCampaign = new ActiveCampaign('', '123', $http = Mockery::mock('GuzzleHttp\Client'));
 
@@ -71,11 +71,12 @@ class ActiveCampaignTest extends TestCase
         $response->shouldReceive('getStatusCode')->andReturn(400);
         $response->shouldReceive('getBody')->once()->andReturn('Error!');
 
+        $errorMessage = '';
         try {
             $activeCampaign->organizations();
-        } catch (\TestMonitor\ActiveCampaign\Exceptions\FailedActionException $e) {
+        } catch (\Minstersoft\ActiveCampaign\Exceptions\FailedActionException $e) {
+            $errorMessage = $e->getMessage();
         }
-
-        $this->assertEquals('Error!', $e->getMessage());
+        $this->assertEquals('Error!', $errorMessage);
     }
 }

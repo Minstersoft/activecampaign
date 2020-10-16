@@ -1,12 +1,13 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Actions;
+namespace Minstersoft\ActiveCampaign\Actions;
 
-use TestMonitor\ActiveCampaign\Resources\Automation;
-use TestMonitor\ActiveCampaign\Resources\Contact;
-use TestMonitor\ActiveCampaign\Resources\ContactAutomation;
-use TestMonitor\ActiveCampaign\Resources\ContactTag;
-use TestMonitor\ActiveCampaign\Resources\Tag;
+use Minstersoft\ActiveCampaign\Resources\Automation;
+use Minstersoft\ActiveCampaign\Resources\Contact;
+use Minstersoft\ActiveCampaign\Resources\ContactAutomation;
+use Minstersoft\ActiveCampaign\Resources\ContactList;
+use Minstersoft\ActiveCampaign\Resources\ContactTag;
+use Minstersoft\ActiveCampaign\Resources\Tag;
 
 trait ManagesContacts
 {
@@ -50,18 +51,144 @@ trait ManagesContacts
      * @param string $email
      * @param string $firstName
      * @param string $lastName
-     * @param int|null $orgid
-     *
+     * @param string|null $phone
+     * @param array|null $fieldValues
      * @return Contact|null
      */
-    public function createContact($email, $firstName, $lastName, $orgid = null)
+    public function createContact($email, $firstName, $lastName, $phone = null, $fieldValues = null)
     {
-        $contacts = $this->transformCollection(
-            $this->post('contacts', ['json' => ['contact' => compact('email', 'firstName', 'lastName', 'orgid')]]),
-            Contact::class
+        return $this->transformItem(
+            $this->post(
+                'contacts',
+                [
+                    'json' => [
+                        'contact' => compact(
+                            'email',
+                            'firstName',
+                            'lastName',
+                            'phone',
+                            'fieldValues'
+                        ),
+                    ],
+                ]
+            ),
+            Contact::class,
+            Contact::ITEM_KEY
         );
+    }
 
-        return array_shift($contacts);
+    /**
+     * Create or update contact.
+     *
+     * @param $email
+     * @param string|null $firstName
+     * @param string|null $lastName
+     * @param string|null $phone
+     * @param array $fieldValues
+     * @return Contact|null
+     */
+    public function createOrUpdateContact(
+        $email,
+        $firstName = null,
+        $lastName = null,
+        $phone = null,
+        $fieldValues = null
+    ) {
+        $contact = [
+            'email' => $email,
+        ];
+
+        foreach (
+            [
+                'firstName',
+                'lastName',
+                'phone',
+                'fieldValues',
+            ] as $optionalField
+        ) {
+            if (isset(${$optionalField})) {
+                $contact[$optionalField] = ${$optionalField};
+            }
+        }
+
+        return $this->transformItem(
+            $this->post(
+                'contact/sync',
+                [
+                    'json' => [
+                        'contact' => $contact,
+                    ],
+                ]
+            ),
+            Contact::class,
+            Contact::ITEM_KEY
+        );
+    }
+
+    /**
+     * Update contact.
+     *
+     * @param int $id
+     * @param string $email
+     * @param string $firstName
+     * @param string $lastName
+     * @param string|null $phone
+     * @param array|null $fieldValues
+     * @return Contact|null
+     */
+    public function updateContact(
+        int $id,
+        string $email,
+        $firstName = null,
+        $lastName = null,
+        $phone = null,
+        $fieldValues = null
+    ) {
+        $contact = [
+            'id'    => $id,
+            'email' => $email,
+        ];
+
+        foreach (
+            [
+                'firstName',
+                'lastName',
+                'phone',
+                'fieldValues',
+            ] as $optionalField
+        ) {
+            if (isset(${$optionalField})) {
+                $contact[$optionalField] = ${$optionalField};
+            }
+        }
+
+        return $this->transformItem(
+            $this->put(
+                'contact/' . $id,
+                [
+                    'json' => [
+                        'contact' => $contact,
+                    ],
+                ]
+            ),
+            Contact::class,
+            Contact::ITEM_KEY
+        );
+    }
+
+    /**
+     * Get contact
+     *
+     * @param $id
+     * @return Contact|null
+     */
+    public function getContact($id)
+    {
+        return $this->transformItem(
+            $this->get('contacts/' . $id),
+            Contact::class,
+            Contact::ITEM_KEY
+        );
     }
 
     /**
@@ -70,11 +197,10 @@ trait ManagesContacts
      * @param string $email
      * @param string $firstName
      * @param string $lastName
-     * @param int|null $orgid
-     *
+     * @param string|null $phone
      * @return Contact
      */
-    public function findOrCreateContact($email, $firstName, $lastName, $orgid = null)
+    public function findOrCreateContact($email, $firstName, $lastName, $phone = null, $fieldValues = null)
     {
         $contact = $this->findContact($email);
 
@@ -82,13 +208,28 @@ trait ManagesContacts
             return $contact;
         }
 
-        return $this->createContact($email, $firstName, $lastName, $orgid);
+        return $this->createContact($email, $firstName, $lastName, $phone, $fieldValues);
+    }
+
+    /**
+     * Return contact list of a contact
+     *
+     * @param string $contact id
+     * @return array of ContactList
+     */
+    public function getContactListsOfContact(string $contact)
+    {
+        return $this->transformCollection(
+            $this->get('contactLists', ['query' => ['contact' => $contact]]),
+            ContactList::class,
+            ContactList::COLLECTION_KEY
+        );
     }
 
     /**
      * Get all automations of a contact.
      *
-     * @param \TestMonitor\ActiveCampaign\Resources\Contact $contact
+     * @param \Minstersoft\ActiveCampaign\Resources\Contact $contact
      *
      * @return array
      */
@@ -104,7 +245,7 @@ trait ManagesContacts
     /**
      * Get all tags of a contact.
      *
-     * @param \TestMonitor\ActiveCampaign\Resources\Contact $contact
+     * @param \Minstersoft\ActiveCampaign\Resources\Contact $contact
      *
      * @return array
      */
@@ -120,8 +261,8 @@ trait ManagesContacts
     /**
      * Removing a automation from a contact.
      *
-     * @param \TestMonitor\ActiveCampaign\Resources\Contact $contact
-     * @param \TestMonitor\ActiveCampaign\Resources\Automation $automation
+     * @param \Minstersoft\ActiveCampaign\Resources\Contact $contact
+     * @param \Minstersoft\ActiveCampaign\Resources\Automation $automation
      */
     public function removeAutomationFromContact(Contact $contact, Automation $automation)
     {
@@ -141,7 +282,7 @@ trait ManagesContacts
     /**
      * Removing all automations from a contact.
      *
-     * @param \TestMonitor\ActiveCampaign\Resources\Contact $contact
+     * @param \Minstersoft\ActiveCampaign\Resources\Contact $contact
      */
     public function removeAllAutomationsFromContact(Contact $contact)
     {
@@ -155,8 +296,8 @@ trait ManagesContacts
     /**
      * Removing a tag from a contact.
      *
-     * @param \TestMonitor\ActiveCampaign\Resources\Contact $contact
-     * @param \TestMonitor\ActiveCampaign\Resources\Tag $tag
+     * @param \Minstersoft\ActiveCampaign\Resources\Contact $contact
+     * @param \Minstersoft\ActiveCampaign\Resources\Tag $tag
      */
     public function removeTagFromContact(Contact $contact, Tag $tag)
     {
@@ -172,4 +313,5 @@ trait ManagesContacts
 
         $this->delete("contactTags/{$contactTag->id}");
     }
+
 }

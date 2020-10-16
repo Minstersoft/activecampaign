@@ -1,8 +1,8 @@
 <?php
 
-namespace TestMonitor\ActiveCampaign\Actions;
+namespace Minstersoft\ActiveCampaign\Actions;
 
-use TestMonitor\ActiveCampaign\Resources\Event;
+use Minstersoft\ActiveCampaign\Resources\Event;
 
 trait ManagesEvents
 {
@@ -75,7 +75,7 @@ trait ManagesEvents
      *
      * @param $name
      *
-     * @throws \TestMonitor\ActiveCampaign\Exceptions\NotFoundException
+     * @throws \Minstersoft\ActiveCampaign\Exceptions\NotFoundException
      */
     public function deleteEvent($name)
     {
@@ -90,7 +90,7 @@ trait ManagesEvents
      * @param array  $eventData a value to store for the event, optional
      *
      * @return bool TRUE on success, FALSE otherwise
-     * @throws \TestMonitor\ActiveCampaign\Exceptions\FailedActionException
+     * @throws \Minstersoft\ActiveCampaign\Exceptions\FailedActionException
      */
     public function trackEvent($name, $email = '', $eventData = [])
     {
@@ -116,7 +116,7 @@ trait ManagesEvents
 
             return false;
         } else {
-            throw new \TestMonitor\ActiveCampaign\Exceptions\FailedActionException(curl_error($curl));
+            throw new \Minstersoft\ActiveCampaign\Exceptions\FailedActionException(curl_error($curl));
         }
     }
 }

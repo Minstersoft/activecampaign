@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="TestMonitor Test Suite">
+        <testsuite name="Minstersoft Test Suite">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
