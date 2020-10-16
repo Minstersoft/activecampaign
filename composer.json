@@ -1,7 +1,6 @@
 {
     "name": "minstersoft/activecampaign",
     "description": "ActiveCampaign API connector for APIv3 For PHP 7.0",
-    "version": "1.0.0",
     "keywords": ["activecampaign", "active", "campaign", "api"],
     "authors": [
         {
@@ -48,5 +47,8 @@
         "psr-4": {
             "Minstersoft\\ActiveCampaign\\": "src/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
 }
