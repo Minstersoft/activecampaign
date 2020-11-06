@@ -2,6 +2,7 @@
 
 namespace Minstersoft\ActiveCampaign\Actions;
 
+use Minstersoft\ActiveCampaign\Exceptions\ValidationException;
 use Minstersoft\ActiveCampaign\Resources\Deal;
 
 
@@ -40,8 +41,8 @@ trait ManagesDeals
      * - int status
      * - array fields
      *
-     *
      * @return Deal|null
+     * @throws ValidationException
      */
     public function createDeal(
         string $title,
@@ -64,9 +65,9 @@ trait ManagesDeals
         );
 
         // Append optional
-        foreach ($optional as $key => $value) {
+        foreach ($optional as $key => $val) {
             if (!isset($dealData[$key])) {
-                $dealData[$key] = $value;
+                $dealData[$key] = $val;
             }
         }
 
@@ -90,7 +91,9 @@ trait ManagesDeals
      *
      * @param int $id
      * @param array $data
+     *
      * @return Deal|null
+     * @throws ValidationException
      */
     public function updateDeal(
         int $id,
