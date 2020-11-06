@@ -201,6 +201,10 @@ trait ManagesCustomFields
             }
 
             foreach ($customFields as $customField) {
+                if (empty($fieldOptions[$customField->id])) {
+                    continue;
+                }
+
                 $customFieldOptions = $this->transformCollection(
                     $fieldOptions[$customField->id],
                     CustomFieldOptions::class,
