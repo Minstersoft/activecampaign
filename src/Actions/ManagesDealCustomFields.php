@@ -2,7 +2,6 @@
 
 namespace Minstersoft\ActiveCampaign\Actions;
 
-use Minstersoft\ActiveCampaign\Resources\Contact;
 use Minstersoft\ActiveCampaign\Resources\DealCustomField;
 use Minstersoft\ActiveCampaign\Resources\GroupDefinition;
 

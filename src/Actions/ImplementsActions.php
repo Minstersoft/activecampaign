@@ -15,6 +15,8 @@ trait ImplementsActions
 
     abstract protected function post($uri, array $payload = []);
 
+    abstract protected function patch($uri, array $payload = []);
+
     abstract protected function delete($uri, array $payload = []);
 
     abstract protected function transformCollection($collection, $class, $key = '', $extraData = []);
