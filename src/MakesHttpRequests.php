@@ -66,6 +66,23 @@ trait MakesHttpRequests
     }
 
     /**
+     * Make a PATCH request to ActiveCampaign and return the response.
+     *
+     * @param  string $uri
+     * @param  array $payload
+     *
+     * @throws \Minstersoft\ActiveCampaign\Exceptions\FailedActionException
+     * @throws \Minstersoft\ActiveCampaign\Exceptions\NotFoundException
+     * @throws \Minstersoft\ActiveCampaign\Exceptions\ValidationException
+     *
+     * @return mixed
+     */
+    private function patch($uri, array $payload = [])
+    {
+        return $this->request('PATCH', $uri, $payload);
+    }
+
+    /**
      * Make a DELETE request to ActiveCampaign and return the response.
      *
      * @param  string $uri

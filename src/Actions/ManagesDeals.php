@@ -128,4 +128,43 @@ trait ManagesDeals
         );
     }
 
+    /**
+     * Bulk add deal custom field values to deal
+     *
+     * @param int $dealId
+     * @param array $data
+     *
+     * @return mixed api response
+     * @throws ValidationException
+     */
+    public function bulkCreateDealCustomFieldValue(int $dealId, array $data)
+    {
+        foreach ($data as &$customField) {
+            $customField['dealId'] = $dealId;
+        }
+
+        return $this->post('dealCustomFieldData/bulkCreate',
+            [
+                'json' => $data,
+            ]
+        );
+    }
+
+    /**
+     * Bulk update deal custom field values
+     *
+     * @param array $data in each item must contain id of custom field
+     *
+     * @return mixed api response
+     * @throws ValidationException
+     */
+    public function bulkUpdateDealCustomFieldValue(array $data)
+    {
+        return $this->patch('dealCustomFieldData/bulkUpdate',
+            [
+                'json' => $data,
+            ]
+        );
+    }
+
 }
