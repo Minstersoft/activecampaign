@@ -2,7 +2,11 @@ name: ActiveCampaign
 
 on:
   push:
-    branches: [ 'feature/**' ]
+    branches:
+      - hotfix/**
+      - release/**
+      - develop
+      - main
   pull_request:
     branches: 
       - develop
