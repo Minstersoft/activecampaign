@@ -114,12 +114,64 @@ trait ManagesDeals
     }
 
     /**
+     * Delete a deal.
+     *
+     * @param int $id
+     *
+     * @throws \Exception
+     */
+    public function deleteDeal(int $id) {
+        $this->delete('deals/' . $id);
+    }
+
+    /**
+     * Find deals
+     *
+     * @param $criteria
+     *
+     * Example of criteria
+     * fieldFilters[0][group_logic]: and
+     * fieldFilters[0][conds][0][type]: custom
+     * fieldFilters[0][conds][0][id]:
+     * fieldFilters[0][conds][0][cond]: is
+     * fieldFilters[0][conds][0][value]: 1
+     * fieldFilters[0][conds][0][label]: Related Id
+     * fieldFilters[0][conds][0][ftype]: text
+     * fieldFilters[1][group_logic]: and
+     * fieldFilters[1][conds][0][type]: custom
+     * fieldFilters[1][conds][0][id]:
+     * fieldFilters[1][conds][0][cond]: is
+     * fieldFilters[1][conds][0][value]: additional_products
+     * fieldFilters[1][conds][0][label]: Related Table
+     * fieldFilters[1][conds][0][ftype]: text
+     *
+     * @return Deal[]
+     */
+    public function findDeals(array $criteria = []): array
+    {
+        // Default criteria
+        $criteria += [
+            'limit'  => '1',
+            'offset' => '0',
+            'orders' => [
+                'next-action' => 'DESC',
+            ],
+        ];
+
+        return $this->transformCollection(
+            $this->get('deals', ['query' => $criteria]),
+            Deal::class,
+            Deal::COLLECTION_KEY
+        );
+    }
+
+    /**
      * Get deal
      *
-     * @param $id
+     * @param int $id
      * @return Deal|null
      */
-    public function getDeal($id)
+    public function getDeal(int $id)
     {
         return $this->transformItem(
             $this->get('deals/' . $id),
