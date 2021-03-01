@@ -129,7 +129,11 @@ trait ManagesCustomFields
      */
     public function customFields()
     {
-        $apiResponse = $this->get('fields');
+        $apiResponse = $this->get('fields', [
+            'query' => [
+                'all' => 'true',
+            ],
+        ]);
 
         return $this->convertResponseToCustomField($apiResponse);
     }
