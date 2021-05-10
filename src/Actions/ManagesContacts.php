@@ -192,6 +192,17 @@ trait ManagesContacts
     }
 
     /**
+     * Delete a contact.
+     *
+     * @param int $id
+     *
+     * @throws \Exception
+     */
+    public function deleteContact(int $id) {
+        $this->delete('contacts/' . $id);
+    }
+
+    /**
      * Find or create a contact.
      *
      * @param string $email
