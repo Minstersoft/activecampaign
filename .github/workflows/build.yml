@@ -8,7 +8,7 @@ on:
       - develop
       - main
   pull_request:
-    branches: 
+    branches:
       - develop
       - main
 
@@ -20,16 +20,16 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    
+
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.0'
         extensions: mbstring, intl
         ini-values: post_max_size=256M, max_execution_time=180
-        coverage: xdebug    
+        coverage: xdebug
         tools: php-cs-fixer, phpunit
-        
+
     - name: Validate composer.json and composer.lock
       run: composer validate
 
@@ -38,13 +38,13 @@ jobs:
       uses: actions/cache@v2
       with:
         path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.json') }}
         restore-keys: |
           ${{ runner.os }}-php-
 
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
-      
+
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit
